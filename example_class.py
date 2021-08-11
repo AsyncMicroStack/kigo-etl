@@ -1,7 +1,7 @@
-from extract.file import file_mapping
+from engine.mapping import bind_id
 
 
-@file_mapping(file_id='input_1')
+@bind_id(object_id='input_1')
 class SomeClass:
     data_1 = '[31:43]'
     data_2 = '[49:61]'

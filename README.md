@@ -7,10 +7,10 @@ aaaaaaaaaaaaaaaaaaaaaabbbbbbbbbsome data 13      some data 2N
 ```
 Then code that will map data into proper places will look like that
 ```python
-from extract.file import file_mapping
+from engine.mapping import bind_id
 
 
-@file_mapping(file_id='input_1')
+@bind_id(object_id='input_1')
 class SomeClass:
     data_1 = '[31:43]'
     data_2 = '[49:61]'

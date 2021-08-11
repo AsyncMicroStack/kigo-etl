@@ -1,7 +1,6 @@
 from example_class import SomeClass
+from engine.mapping import ID_CLASS_MAP
 
 
 if __name__ == '__main__':
-    sc = SomeClass()
-    print(sc.__file_id__)
-    print(dir(sc))
+    print(ID_CLASS_MAP)
