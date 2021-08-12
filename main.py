@@ -1,5 +1,4 @@
-from example_class import SomeClass
-from engine.mapping import ID_CLASS_MAP
+from kigo.etl.engine.mapping import ID_CLASS_MAP
 
 
 if __name__ == '__main__':

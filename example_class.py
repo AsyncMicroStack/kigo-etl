@@ -1,4 +1,4 @@
-from engine.mapping import bind_id
+from kigo.etl.engine.mapping import bind_id
 
 
 @bind_id(object_id='input_1')

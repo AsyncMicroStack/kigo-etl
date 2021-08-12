@@ -1,5 +1,5 @@
 import unittest
-from engine.mapping import bind_id, ID_CLASS_MAP
+from kigo.etl.engine.mapping import bind_id, ID_CLASS_MAP
 
 
 class MappingTestCase(unittest.TestCase):

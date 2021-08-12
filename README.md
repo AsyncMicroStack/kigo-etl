@@ -6,8 +6,9 @@ aaaaaaaaaaaaaaaaaaaaaabbbbbbbbbsome data 12      some data 2Y
 aaaaaaaaaaaaaaaaaaaaaabbbbbbbbbsome data 13      some data 2N
 ```
 Then code that will map data into proper places will look like that
+
 ```python
-from engine.mapping import bind_id
+from kigo.etl.engine.mapping import bind_id
 
 
 @bind_id(object_id='input_1')
