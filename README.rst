@@ -1,8 +1,8 @@
 Kigo ETL framework
 ==============================================
 
-.. image:: https://travis-ci.org/AsyncMicroStack/kigo-etl.svg?branch=master
-   :target: http://travis-ci.org/AsyncMicroStack/kigo-etl
+.. image:: https://travis-ci.com/AsyncMicroStack/kigo-etl.svg?branch=master
+   :target: http://travis-ci.com/AsyncMicroStack/kigo-etl
 
 .. pull-quote ::
    Declarative ETL engine.
