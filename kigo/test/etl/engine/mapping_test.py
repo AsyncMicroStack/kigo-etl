@@ -1,5 +1,5 @@
 import unittest
-from kigo.etl.engine.mapping import bind_id, ID_CLASS_MAP
+from kigo.etl.engine.mapping import mapping, ID_CLASS_MAP
 
 
 class MappingTestCase(unittest.TestCase):
@@ -11,7 +11,7 @@ class MappingTestCase(unittest.TestCase):
         # GIVEN
         obj_id = 'obj_1'
 
-        @bind_id(object_id=obj_id)
+        @mapping(object_id=obj_id)
         class SomeClass:
             data_1 = '[31:43]'
             data_2 = '[49:61]'
@@ -24,12 +24,12 @@ class MappingTestCase(unittest.TestCase):
         obj_id = 'obj_1'
         obj_id_2 = 'obj_2'
 
-        @bind_id(object_id=obj_id)
+        @mapping(object_id=obj_id)
         class SomeClass:
             data_1 = '[31:43]'
             data_2 = '[49:61]'
 
-        @bind_id(object_id=obj_id_2)
+        @mapping(object_id=obj_id_2)
         class SomeClass2:
             data_1 = '[31:43]'
             data_2 = '[49:61]'
@@ -41,12 +41,12 @@ class MappingTestCase(unittest.TestCase):
         # GIVEN
         obj_id = 'obj_1'
 
-        @bind_id(object_id=obj_id)
+        @mapping(object_id=obj_id)
         class SomeClass:
             data_1 = '[31:43]'
             data_2 = '[49:61]'
 
-        @bind_id(object_id=obj_id)
+        @mapping(object_id=obj_id)
         class SomeClass2:
             data_1 = '[31:43]'
             data_2 = '[49:61]'
