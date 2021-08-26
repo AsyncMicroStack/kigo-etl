@@ -5,8 +5,8 @@ class FileLoader:
     __reverse__ = {}
 
     @classmethod
-    def set(cls, name, file_path):
+    def set(cls, clazz, file_path):
         if not os.path.exists(file_path):
-            raise Exception(f"File mapping <{name}>. File not found: <{file_path}>!")
-        FileLoader.__files__[name] = file_path
-        FileLoader.__reverse__[file_path] = name
+            raise Exception(f"File mapping <{clazz}>. File not found: <{file_path}>!")
+        FileLoader.__files__[clazz] = file_path
+        FileLoader.__reverse__[file_path] = clazz

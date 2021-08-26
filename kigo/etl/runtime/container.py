@@ -14,11 +14,12 @@ class Container:
     __EXTRACTORS = {}
 
     @staticmethod
-    def register_class(name, clazz):
-        if name not in Container.__MAPPINGS:
-            Container.__MAPPINGS[name] = [clazz]
+    def register_map(map_reference):
+        print(map_reference)
+        if map_reference.clazz.__qualname__ not in Container.__MAPPINGS:
+            Container.__MAPPINGS[map_reference.clazz.__qualname__] = map_reference
         else:
-            Container.__MAPPINGS[name].append(clazz)
+            raise Exception(f"Duplicate reader name <{map_reference.clazz.__qualname__}>!")
 
     @staticmethod
     def register_reader(clazz):
