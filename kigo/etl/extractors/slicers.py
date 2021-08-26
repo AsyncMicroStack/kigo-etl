@@ -19,7 +19,6 @@ class TextSlice(Extractor):
 class Expr(Extractor):
 
     def __init__(self, expression):
-        print(f"My expression {expression}")
         self.expression = expression
 
     def call(self, num, raw, obj):

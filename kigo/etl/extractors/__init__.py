@@ -2,6 +2,7 @@ __all__ = []
 
 import abc
 
+
 class Extractor(abc.ABC):
 
     @abc.abstractmethod

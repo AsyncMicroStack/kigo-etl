@@ -40,20 +40,19 @@ class Container:
         return Container.__EXTRACTORS
 
 
-class StaticAttribute(type):
+class StaticExtractorAttribute(type):
     def __getattr__(cls, name):
         if name in Container.extractors:
             return FabricExtractors(Container.extractors[name])
         raise Exception(f"Not found extractor <{name}>. Available extractors: {tuple(Container.extractors.keys())}")
 
 
-class FabricExtractors(metaclass=StaticAttribute):
+class FabricExtractors(metaclass=StaticExtractorAttribute):
     def __init__(self, clazz):
         self.clazz = clazz
 
     def __getitem__(self, item):
         return self.clazz(item)
 
-    def __getattr__(self, item):
-        print(item)
-        return self.clazz(item)
+    def __call__(self, *args, **kwargs):
+        return self.clazz(*args, **kwargs)
