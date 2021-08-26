@@ -21,12 +21,12 @@ Let's assume that we have a file named input_1
 
    # helloworld.py
 
-   from engine.mapping import bind_id
+   from kigo.etl.mapping import mapping
 
 
-   @bind_id(object_id='input_1')
+   @mapping(name='input_1')
    class SomeClass:
-      data_1 = '[31:43]'
+      data_1 = extract('[31:43]')
       data_2 = '[49:61]'
 
 What we expect is to have 3 instances of classes SomeClass where data_1 and data_2 will have proper ranges of data. For example first instance will look like:

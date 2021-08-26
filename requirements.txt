@@ -2,4 +2,5 @@ xmltodict
 coloredlogs 
 ujson 
 pyyaml
+coverage
 

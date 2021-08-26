@@ -1,4 +1,4 @@
-from kigo.etl.engine.mapping import ID_CLASS_MAP
+from kigo.etl.mapping import ID_CLASS_MAP
 
 
 if __name__ == '__main__':
