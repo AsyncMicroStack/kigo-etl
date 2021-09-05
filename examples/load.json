@@ -1,0 +1,8 @@
+{
+  "mapping": [
+    {
+      "class"  : {"SomeClass":  {}},
+      "readers": [{"TextReader": {"file": "./data/input_1"}}]
+    }
+  ]
+}

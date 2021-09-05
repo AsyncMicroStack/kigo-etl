@@ -1,4 +1,4 @@
-from kigo.etl.runtime.container import reader
+from kigo.etl.runtime.registry import reader
 from kigo.etl.file import FileReader
 from kigo.etl.file import ReaderType
 

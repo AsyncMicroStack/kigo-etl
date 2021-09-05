@@ -1,5 +1,5 @@
 from kigo.etl.extractors import Extractor
-from kigo.etl.runtime.container import extractor
+from kigo.etl.runtime.registry import extractor
 
 
 @extractor

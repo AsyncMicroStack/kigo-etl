@@ -31,8 +31,8 @@ class FileReader(abc.ABC):
 
     def on_read(self) -> bool:
         """
-        For each consistent piece of data.
-        If False is returned, the data fragment will be skipped
+        For each consistent piece of examples.
+        If False is returned, the examples fragment will be skipped
         :return:
         """
         return True
