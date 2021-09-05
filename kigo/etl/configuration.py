@@ -32,14 +32,11 @@ class Mapping:
         if not self._iter_pos < len(self.mapping):
             raise StopIteration
         conf = self.mapping[self._iter_pos]
-        cname = next(iter(conf["class"]))Ramzes#2001
+        cname = next(iter(conf["class"]))
 
         mapping_info = MappingRegistry.mappings[cname]
-        return mapping_info
-
-        self.mapping[self._iter_pos]
         self._iter_pos += 1
-        return res
+        return mapping_info
 
     def __iter__(self):
         self._iter_pos = 0

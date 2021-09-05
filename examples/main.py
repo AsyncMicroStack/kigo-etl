@@ -6,7 +6,7 @@ import etl.load
 conf = Config.load("load.json")
 for mapping_info in conf.mapping:
     print(mapping_info)
-    c = mapp.classified
+    c = mapping_info.clazz
     print(c)
 
 
