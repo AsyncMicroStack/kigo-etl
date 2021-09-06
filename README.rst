@@ -21,13 +21,14 @@ Let's assume that we have a file named input_1
 
    # helloworld.py
 
-   from kigo.etl.mapping import mapping
+   from kigo.etl.mapper.mapping import mapping
+   from kigo.etl.extractors.fabric import Extract
 
 
-   @mapping(name='input_1')
+   @mapping
    class SomeClass:
-      data_1 = extract('[31:43]')
-      data_2 = '[49:61]'
+       data_1 = Extract.TextSlice[31:43]
+       data_2 = Extract.TextSlice[49:61]
 
 What we expect is to have 3 instances of classes SomeClass where data_1 and data_2 will have proper ranges of data. For example first instance will look like:
 
