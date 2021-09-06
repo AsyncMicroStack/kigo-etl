@@ -2,8 +2,8 @@ from kigo.etl.runtime.registry import MappingRegistry
 
 
 class MappingInfo:
-    def __init__(self, clazz):
-        self._clazz = clazz
+    def __init__(self, clazz, params = {}):
+        self._clazz = [clazz, params]
         self._readers = []
 
     @property
@@ -18,9 +18,8 @@ class MappingInfo:
     def readers(self, readers):
         self._readers = readers
 
-
     def __repr__(self):
-        return f"MappingInfo<{self._clazz.__qualname__}, {self._readers}>"
+        return f"MappingInfo <{self._clazz}> readers: {self._readers}>"
 
 
 def mapping(clazz):

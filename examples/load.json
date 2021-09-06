@@ -2,7 +2,11 @@
   "mapping": [
     {
       "class"  : {"SomeClass":  {}},
-      "readers": [{"TextReader": {"file": "./data/input_1"}}]
+      "readers": [{"TextReader": {"path": "./data/input_1"}}]
+    },
+    {
+      "class"  : {"SomeClass2":  {}},
+      "readers": [{"TextReader": {"path": "./data/input_1"}}]
     }
   ]
 }

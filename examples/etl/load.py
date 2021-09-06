@@ -7,3 +7,7 @@ class SomeClass:
     data_1 = Extract.TextSlice[31:43]
     data_2 = Extract.TextSlice[49:61]
 
+@mapping
+class SomeClass2:
+    data_1 = Extract.TextSlice[31:43]
+    data_2 = Extract.TextSlice[49:61]

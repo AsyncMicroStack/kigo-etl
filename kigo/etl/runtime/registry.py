@@ -33,8 +33,8 @@ class MappingRegistry:
 
     @staticmethod
     def append_mapping(mapping_info):
-        if mapping_info.clazz.__qualname__ not in MappingRegistry.__MAPPINGS:
-            MappingRegistry.__MAPPINGS[mapping_info.clazz.__qualname__] = mapping_info
+        if mapping_info.clazz[0].__qualname__ not in MappingRegistry.__MAPPINGS:
+            MappingRegistry.__MAPPINGS[mapping_info.clazz[0].__qualname__] = mapping_info
         else:
             raise Exception(f"Duplicate mapping name <{mapping_info.clazz.__qualname__}>!")
 
@@ -68,4 +68,9 @@ class MappingRegistry:
     @property
     def mappings(cls):
         return MappingRegistry.__MAPPINGS
+
+    @classmethod
+    @property
+    def readers(cls):
+        return MappingRegistry.__READERS
 
