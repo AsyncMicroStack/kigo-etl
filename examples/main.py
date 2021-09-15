@@ -3,11 +3,9 @@ from kigo.etl.configuration import Config
 import etl.load
 
 
+
 conf = Config.load("load.json")
-for mapping_info in conf.mapping:
-    print(mapping_info)
-
-
+runtime.process(conf)
 
 
 

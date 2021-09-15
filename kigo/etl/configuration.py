@@ -17,6 +17,10 @@ class Config:
         return Config()
 
     @property
+    def config(self):
+        return Config.__config
+
+    @property
     def mapping(self):
         return Mapping(Config.__config["mapping"])
 
@@ -55,9 +59,6 @@ class Config:
                 rname = next(iter(reader))
                 if not rname in MappingRegistry.readers:
                     logging.error(f"The reader <{cname}> is not exist in ETL definition!")
-
-
-
 
     def __repr__(self):
         return json.dumps(Config.__config)
