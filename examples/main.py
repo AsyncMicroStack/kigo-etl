@@ -5,7 +5,7 @@ import etl.load
 
 
 conf = Config.load("load.json")
-runtime.process(conf)
-
-
+db = runtime.process(conf)
+import pprint
+pprint.pprint(db.data)
 

@@ -1,7 +1,7 @@
 {
   "mapping": [
     {
-      "class"  : {"SomeClass":  {}},
+      "class"  : {"SomeClass1":  {}},
       "readers": [{"TextReader": {"path": "./data/input_1"}}]
     },
     {

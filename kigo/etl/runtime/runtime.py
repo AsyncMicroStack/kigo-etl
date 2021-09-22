@@ -1,4 +1,4 @@
-from kigo.etl.runtime.registry import MappingRegistry
+from kigo.etl.storage.memdb import MemoryDB
 
 
 class MetaReflection:
@@ -27,12 +27,16 @@ class ExtractData:
         return unit
 
 def process_mapping(conf):
+    db = MemoryDB()
     for mapp in conf.mapping:
-        for reader in mapp.readers:
-            zlass, init = reader
-            r = zlass(**init)
+        for init_reader in mapp.readers:
+            typeof_reader, init = init_reader
+            r = typeof_reader(**init)
             for line in r:
-                print(ExtractData.extract(mapp.clazz[0], *line))
+                data = ExtractData.extract(mapp.clazz[0], *line)
+                db.store(mapp.clazz[0], data)
+    return db
 
-def process(conf):
-    process_mapping(conf)
+def process(conf)->MemoryDB:
+    db = process_mapping(conf)
+    return db

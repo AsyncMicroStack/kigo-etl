@@ -1,10 +1,9 @@
 __all__ = []
 
-import abc
 from kigo.etl.runtime.registry import  MappingRegistry
+from kigo.etl.extractors.operators import ExtractorOperator
 
-class Extractor(abc.ABC):
+class Extractor(ExtractorOperator):
 
-    @abc.abstractmethod
     def call(self, num, raw, obj):
-        pass
+        raise Exception("Not implemented!")
