@@ -1,3 +1,5 @@
+import os.path
+
 from kigo.etl.storage.memdb import MemoryDB
 
 
@@ -26,11 +28,24 @@ class ExtractData:
             unit[field] = operation.call(num, data, unit)
         return unit
 
+def check_readers(conf):
+    non_existing_file = []
+    for mapp in conf.mapping:
+        for init_reader in mapp.readers:
+            typeof_reader, init = init_reader
+            if not os.path.exists(init["path"]):
+                non_existing_file.append(init['path'])
+    return non_existing_file
+
 def process_mapping(conf):
+    non_existing_file = check_readers(conf)
+    print(f"non-existing files: {non_existing_file}")
     db = MemoryDB()
     for mapp in conf.mapping:
         for init_reader in mapp.readers:
             typeof_reader, init = init_reader
+            if init["path"] in non_existing_file:
+                continue
             r = typeof_reader(**init)
             for line in r:
                 data = ExtractData.extract(mapp.clazz[0], *line)

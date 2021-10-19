@@ -19,5 +19,9 @@ class SomeClass2(ExtractorOperator):
     data_1                 = Extract.TextSlice[31:43]
     data_2                 = Extract.TextSlice[49:61]
 
+@mapping
+class SomeClass3(ExtractorOperator):
+    data_1                 = "copy" + SomeClass1.data_1
+    data_2                 = "copy" + SomeClass2.data_2
 
 print(SomeClass1.data_1+SomeClass2.data_2)
