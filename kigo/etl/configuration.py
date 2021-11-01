@@ -37,11 +37,11 @@ class Config:
         for conf in Config.__config["mapping"]:
             cname = next(iter(conf["class"]))
             if not cname in MappingRegistry.mappings:
-                logging.error(f"The class <{cname}> is not exist in ETL definition!")
+                logging.error(f"The class <{cname}> does not exist in ETL definition!")
             for reader in conf["readers"]:
                 rname = next(iter(reader))
                 if not rname in MappingRegistry.readers:
-                    logging.error(f"The reader <{cname}> is not exist in ETL definition!")
+                    logging.error(f"The reader <{cname}> does not exist in ETL definition!")
 
     @classmethod
     def merge(cls):
