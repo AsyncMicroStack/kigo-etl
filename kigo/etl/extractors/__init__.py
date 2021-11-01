@@ -1,7 +1,8 @@
 __all__ = []
 
 import abc
-from kigo.etl.runtime.registry import  MappingRegistry
+from kigo.etl.runtime.registry import MappingRegistry
+
 
 class Extractor(abc.ABC):
 

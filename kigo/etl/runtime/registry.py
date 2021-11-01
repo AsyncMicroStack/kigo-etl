@@ -73,4 +73,3 @@ class MappingRegistry:
     @property
     def readers(cls):
         return MappingRegistry.__READERS
-

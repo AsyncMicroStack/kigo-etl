@@ -56,9 +56,6 @@ class Config:
                 if not rname in MappingRegistry.readers:
                     logging.error(f"The reader <{cname}> is not exist in ETL definition!")
 
-
-
-
     def __repr__(self):
         return json.dumps(Config.__config)
 
@@ -85,9 +82,3 @@ class Mapping:
     def __iter__(self):
         self._iter_pos = 0
         return self
-
-
-
-
-
-

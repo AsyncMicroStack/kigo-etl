@@ -3,12 +3,14 @@ __all__ = []
 import abc
 from enum import Enum
 
+
 class ReaderType(Enum):
     ABC  = "ABC"
     TEXT = "TEXT"
     CSV  = "CSV"
     XML  = "XML"
     JSON = "JSON"
+
 
 class FileReader(abc.ABC):
 
