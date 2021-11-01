@@ -5,7 +5,7 @@ class StaticExtractorAttribute(type):
     def __getattr__(cls, name):
         if name in MappingRegistry.extractors:
             return FabricExtractors(MappingRegistry.extractors[name])
-        raise Exception(f"Not found extractor <{name}>. Available extractors: {tuple(MappingRegistry.extractors.keys())}")
+        raise Exception(f"Extractor <{name}> not found. Available extractors: {tuple(MappingRegistry.extractors.keys())}")
 
 
 class FabricExtractors(metaclass=StaticExtractorAttribute):
