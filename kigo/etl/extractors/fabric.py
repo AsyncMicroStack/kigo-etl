@@ -1,5 +1,6 @@
 from kigo.etl.runtime.registry import MappingRegistry
 
+
 class StaticExtractorAttribute(type):
     def __getattr__(cls, name):
         if name in MappingRegistry.extractors:
@@ -16,5 +17,6 @@ class FabricExtractors(metaclass=StaticExtractorAttribute):
 
     def __call__(self, *args, **kwargs):
         return self.clazz(*args, **kwargs)
+
 
 Extract = FabricExtractors
