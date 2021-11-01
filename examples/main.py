@@ -1,6 +1,6 @@
 from kigo.etl.runtime import runtime
 from kigo.etl.configuration import Config
-import etl.load
+import examples.etl.load
 
 
 conf = Config.load("load.json")
