@@ -15,10 +15,19 @@ class ReaderType(Enum):
 class FileReader(abc.ABC):
 
     __reader_type__ = ReaderType.ABC
+    __init_values__ = {}
+    __safe_init__   = True
 
     @abc.abstractmethod
     def __init__(self, path):
-        self.path = path
+        if FileReader.__init_values__:
+            if FileReader.__safe_init__:
+                for key in FileReader.__init_values__:
+                    self.__setattr__(key, FileReader.__init_values__[key])
+            else:
+                self.__dict__.update(FileReader.__init_values__)
+        else:
+            self.path = path
 
     @classmethod
     @property
