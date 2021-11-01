@@ -22,8 +22,8 @@ class FileReader(abc.ABC):
 
     @classmethod
     @property
-    def type(clr) -> ReaderType:
-        return clr.__reader_type__
+    def type(cls) -> ReaderType:
+        return cls.__reader_type__
 
     def read(self):
         with open(self.path, "r") as f:
