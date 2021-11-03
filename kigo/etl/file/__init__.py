@@ -42,7 +42,6 @@ class FileReader(abc.ABC):
                 is_correct = True
         return num, data
 
-
     @classmethod
     @property
     def type(cls) -> ReaderType:
