@@ -17,6 +17,10 @@ class Config:
         return Config()
 
     @property
+    def config(self):
+        return Config.__config
+
+    @property
     def mapping(self):
         return Mapping(Config.__config["mapping"])
 
@@ -31,17 +35,16 @@ class Config:
     @classmethod
     def validate(cls):
         if len(Config.__config["mapping"]) != len(MappingRegistry.mappings):
-            logging.warning(
-                f"The number of mappings does not match the configuration! Configuration mappings: {len(Config.__config['mapping'])} ETL definitions {len(MappingRegistry.mappings)}")
+            logging.warning(f"The number of mappings does not match the configuration! Configuration mappings: {len(Config.__config['mapping'])} ETL definitions {len(MappingRegistry.mappings)}")
 
         for conf in Config.__config["mapping"]:
             cname = next(iter(conf["class"]))
             if not cname in MappingRegistry.mappings:
-                logging.error(f"The class <{cname}> does not exist in ETL definition!")
+                logging.error(f"The class <{cname}> is not exist in ETL definition!")
             for reader in conf["readers"]:
                 rname = next(iter(reader))
                 if not rname in MappingRegistry.readers:
-                    logging.error(f"The reader <{rname}> does not exist in ETL definition!")
+                    logging.error(f"The reader <{cname}> is not exist in ETL definition!")
 
     @classmethod
     def merge(cls):

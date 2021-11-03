@@ -11,7 +11,7 @@ class TextSlice(Extractor):
         else:
             self.slice = slice(segment)
 
-    def call(self, num, raw, obj):
+    def call(self, num, raw, unit):
         return raw[self.slice]
 
 
@@ -21,5 +21,5 @@ class Expr(Extractor):
     def __init__(self, expression):
         self.expression = expression
 
-    def call(self, num, raw, obj):
+    def call(self, num, raw, unit):
         return eval(self.expression)
