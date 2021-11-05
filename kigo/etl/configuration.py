@@ -11,7 +11,6 @@ class Config:
     def load(cls, file_path):
         with open(file_path, "r") as f:
             Config.__config = json.load(f)
-        Config.clean()
         Config.validate()
         Config.merge()
         return Config()
@@ -23,14 +22,6 @@ class Config:
     @property
     def mapping(self):
         return Mapping(Config.__config["mapping"])
-
-    @classmethod
-    def clean(cls):
-        for conf in Config.__config["mapping"]:
-            cname = next(iter(conf["class"]))
-            mapping_info = MappingRegistry.mappings[cname]
-            mapping_info.clazz[1] = {}
-            mapping_info.readers = []
 
     @classmethod
     def validate(cls):
