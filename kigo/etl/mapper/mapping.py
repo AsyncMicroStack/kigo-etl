@@ -2,7 +2,7 @@ from kigo.etl.runtime.registry import MappingRegistry
 
 
 class MappingInfo:
-    def __init__(self, clazz, params = {}):
+    def __init__(self, clazz, params: dict = {}):
         self._clazz = [clazz, params]
         self._readers = []
 
@@ -22,6 +22,15 @@ class MappingInfo:
         return f"MappingInfo <{self._clazz}> readers: {self._readers}>"
 
 
-def mapping(clazz):
-    MappingRegistry.append_mapping(MappingInfo(clazz))
-    return clazz
+def mapping(file=None, reader=None):
+
+    def wrapper(clazz):
+        mapping_info = MappingInfo(clazz)
+        if reader is not None and file is not None:
+            mapping_info.readers.append((MappingRegistry.readers[reader.__name__], {'path': file}))
+
+        MappingRegistry.append_mapping(mapping_info)
+
+        return clazz
+    return wrapper
+

@@ -2,6 +2,7 @@ import unittest
 import kigo.test.etl.unittest.resources.entities
 
 from kigo.etl.configuration import Config
+from kigo.etl.runtime.registry import MappingRegistry
 from kigo.etl.unittest.decorators import set_reader
 
 
@@ -13,8 +14,8 @@ class MyTestCase(unittest.TestCase):
 
         # WHEN
         conf = Config.load("resources/load.json")
-        for mapping_info in conf.mapping:
-            result.append(str(mapping_info))
+        for mapping_key in MappingRegistry.mappings:
+            result.append(str(MappingRegistry.mappings[mapping_key]))
 
         # THEN
         self.assertListEqual(["MappingInfo <[<class 'kigo.test.etl.unittest.resources.entities.SomeClass'>, {}]> readers: [(<class 'kigo.etl.file.readers.TextReader'>, {'path': './data/input_1'})]>",
@@ -28,8 +29,8 @@ class MyTestCase(unittest.TestCase):
 
         # WHEN
         conf = Config.load("resources/load.json")
-        for mapping_info in conf.mapping:
-            result.append(str(mapping_info))
+        for mapping_key in MappingRegistry.mappings:
+            result.append(str(MappingRegistry.mappings[mapping_key]))
 
         # THEN
         self.assertListEqual(["MappingInfo <[<class 'kigo.test.etl.unittest.resources.entities.SomeClass'>, {}]> readers: [(<class 'kigo.etl.file.readers.TextReader'>, {'path': './data/input_2'})]>",
