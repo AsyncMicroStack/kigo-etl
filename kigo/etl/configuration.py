@@ -34,9 +34,6 @@ class Config:
 
     @classmethod
     def validate(cls):
-        if len(Config.__config["mapping"]) != len(MappingRegistry.mappings):
-            logging.warning(f"The number of mappings does not match the configuration! Configuration mappings: {len(Config.__config['mapping'])} ETL definitions {len(MappingRegistry.mappings)}")
-
         for conf in Config.__config["mapping"]:
             cname = next(iter(conf["class"]))
             if not cname in MappingRegistry.mappings:
