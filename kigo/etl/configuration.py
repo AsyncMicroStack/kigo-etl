@@ -40,13 +40,23 @@ class Config:
             cname = next(iter(conf["class"]))
             cparams = conf["class"][cname]
             mapping_info = MappingRegistry.mappings[cname]
-            if not mapping_info.clazz[1]:
-                mapping_info.clazz[1] = cparams
-            if not mapping_info.readers:
-                for reader in conf["readers"]:
-                    rname = next(iter(reader))
-                    rparams = reader[rname]
-                    mapping_info.readers.append((MappingRegistry.readers[rname], rparams))
+
+            # clean class params
+            if mapping_info.clazz[1]:
+                mapping_info.clazz[1] = {}
+
+            # assigns class params from json config
+            mapping_info.clazz[1] = cparams
+
+            # clean readers
+            if mapping_info.readers:
+                mapping_info.readers = []
+
+            # assign readers from json config
+            for reader in conf["readers"]:
+                rname = next(iter(reader))
+                rparams = reader[rname]
+                mapping_info.readers.append((MappingRegistry.readers[rname], rparams))
 
     def __repr__(self):
         return json.dumps(Config.__config)
