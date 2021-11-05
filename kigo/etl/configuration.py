@@ -36,11 +36,11 @@ class Config:
     def validate(cls):
         for conf in Config.__config["mapping"]:
             cname = next(iter(conf["class"]))
-            if not cname in MappingRegistry.mappings:
+            if cname not in MappingRegistry.mappings:
                 logging.error(f"The class <{cname}> is not exist in ETL definition!")
             for reader in conf["readers"]:
                 rname = next(iter(reader))
-                if not rname in MappingRegistry.readers:
+                if rname not in MappingRegistry.readers:
                     logging.error(f"The reader <{cname}> is not exist in ETL definition!")
 
     @classmethod
