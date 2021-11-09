@@ -4,6 +4,7 @@ import kigo.test.etl.unittest.resources.entities
 from kigo.etl.configuration import Config
 from kigo.etl.runtime.registry import MappingRegistry
 from kigo.etl.unittest.decorators import set_reader
+from kigo.etl.file.readers import TextReader
 
 
 class MyTestCase(unittest.TestCase):
@@ -22,7 +23,7 @@ class MyTestCase(unittest.TestCase):
                               "MappingInfo <[<class 'kigo.test.etl.unittest.resources.entities.SomeClass2'>, {}]> readers: [(<class 'kigo.etl.file.readers.TextReader'>, {'path': './data/input_1'})]>"],
                              result)
 
-    @set_reader(init_values={'path': './data/input_2'})
+    @set_reader(TextReader, init_values={'path': './data/input_2'})
     def test_proper_mapping_with_set_reader(self):
         # GIVEN
         result = []
