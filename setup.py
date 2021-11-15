@@ -5,7 +5,7 @@ with open("README.rst", "r") as fh:
 
 setuptools.setup(
     name="kigo-etl",
-    version="0.0.6",
+    version="0.0.7",
     author="Kigo",
     author_email="kigo@architekt-it.pl",
     description="Python ETL framework",
