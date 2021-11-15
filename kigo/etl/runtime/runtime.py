@@ -32,8 +32,8 @@ class ExtractData:
 
 def check_readers():
     non_existing_file = []
-    for mapp in MappingRegistry.mapping:
-        for init_reader in MappingRegistry.mapping[mapp].readers:
+    for mapp in MappingRegistry.mappings:
+        for init_reader in MappingRegistry.mappings[mapp].readers:
             typeof_reader, init = init_reader
             if not os.path.exists(init["path"]):
                 non_existing_file.append(init['path'])
@@ -44,15 +44,15 @@ def process_mapping():
     non_existing_file = check_readers()
     print(f"non-existing files: {non_existing_file}")
     db = MemoryDB()
-    for mapp in MappingRegistry.mapping:
-        for init_reader in MappingRegistry.mapping[mapp].readers:
+    for mapp in MappingRegistry.mappings:
+        for init_reader in MappingRegistry.mappings[mapp].readers:
             typeof_reader, init = init_reader
             if init["path"] in non_existing_file:
                 continue
             r = typeof_reader(**init)
             for line in r:
-                data = ExtractData.extract(MappingRegistry.mapping[mapp].clazz[0], *line)
-                db.store(MappingRegistry.mapping[mapp].clazz[0], data)
+                data = ExtractData.extract(MappingRegistry.mappings[mapp].clazz[0], *line)
+                db.store(MappingRegistry.mappings[mapp].clazz[0], data)
     return db
 
 
