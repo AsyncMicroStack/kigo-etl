@@ -19,9 +19,9 @@ class Config:
     def config(self):
         return Config.__config
 
-    @classmethod
-    def load_mapping(cls):
-        pass
+    @property
+    def mapping(self):
+        return Mapping(Config.__config["mapping"])
 
     @classmethod
     def validate(cls):
