@@ -22,12 +22,12 @@ class MappingInfo:
         return f"MappingInfo <{self._clazz}> readers: {self._readers}>"
 
 
-def mapping(file=None, reader=None):
+def mapping(path=None, reader=None):
 
     def wrapper(clazz):
         mapping_info = MappingInfo(clazz)
-        if reader is not None and file is not None:
-            mapping_info.readers.append((MappingRegistry.readers[reader.__name__], {'path': file}))
+        if reader is not None and path is not None:
+            mapping_info.readers.append((MappingRegistry.readers[reader.__name__], {'path': path}))
 
         MappingRegistry.append_mapping(mapping_info)
 
