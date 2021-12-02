@@ -1,4 +1,5 @@
 import os.path
+import logging
 
 from kigo.etl.storage.memdb import MemoryDB
 from kigo.etl.runtime.registry import MappingRegistry
@@ -42,7 +43,7 @@ def check_readers():
 
 def process_mapping():
     non_existing_file = check_readers()
-    print(f"non-existing files: {non_existing_file}")
+    logging.debug(f"non-existing files: {non_existing_file}")
     db = MemoryDB()
     for mapp in MappingRegistry.mappings:
         for init_reader in MappingRegistry.mappings[mapp].readers:
