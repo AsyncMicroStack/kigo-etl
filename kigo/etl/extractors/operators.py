@@ -68,7 +68,6 @@ class ExtractorOperator:
     def __radd__(self, other):
         """Implement the ``+`` operator in reverse."""
         return add, other, self
-        # self.reverse_operate(add, [other, self])
 
     def __rsub__(self, other):
         """Implement the ``-`` operator in reverse."""

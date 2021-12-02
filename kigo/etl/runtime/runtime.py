@@ -34,14 +34,13 @@ class ExtractData:
     @staticmethod
     def __evaluate_operation__(operations, num, data, unit):
         if isinstance(operations, tuple):
-            result = operations[0](ExtractData.__evaluate_operation__(operations[1], num, data, unit),
+            return operations[0](ExtractData.__evaluate_operation__(operations[1], num, data, unit),
                                    ExtractData.__evaluate_operation__(operations[2], num, data, unit))
-        elif isinstance(operations, Extractor):
-            result = operations.call(num, data, unit)
-        else:
-            result = operations
 
-        return result
+        elif isinstance(operations, Extractor):
+            return operations.call(num, data, unit)
+
+        return operations
 
 
 def check_readers():

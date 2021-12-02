@@ -15,7 +15,6 @@ class MyTestCase(unittest.TestCase):
     @set_reader(TextReader, init_values={'path': r'resources/data/input_3'})
     def test_something(self):
         # GIVEN
-        result = []
 
         # WHEN
         db = runtime.process()
