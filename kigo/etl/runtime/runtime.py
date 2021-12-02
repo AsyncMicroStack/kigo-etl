@@ -3,6 +3,7 @@ import logging
 
 from kigo.etl.storage.memdb import MemoryDB
 from kigo.etl.runtime.registry import MappingRegistry
+from kigo.etl.extractors import Extractor
 
 
 class MetaReflection:
@@ -27,8 +28,20 @@ class ExtractData:
     def extract(cls, clazz, num, data) -> dict:
         unit = {}
         for field, operation in MetaReflection.operations(clazz).items():
-            unit[field] = operation.call(num, data, unit)
+            unit[field] = ExtractData.__evaluate_operation__(operation, num, data, unit)
         return unit
+
+    @staticmethod
+    def __evaluate_operation__(operations, num, data, unit):
+        if isinstance(operations, tuple):
+            result = operations[0](ExtractData.__evaluate_operation__(operations[1], num, data, unit),
+                                   ExtractData.__evaluate_operation__(operations[2], num, data, unit))
+        elif isinstance(operations, Extractor):
+            result = operations.call(num, data, unit)
+        else:
+            result = operations
+
+        return result
 
 
 def check_readers():

@@ -59,59 +59,60 @@ class ExtractorOperator:
 
     def __lshift__(self, other):
         """implement the << operator."""
-        return self.operate(lshift, other)
+        return lshift, self, other
 
     def __rshift__(self, other):
         """implement the >> operator."""
-        return self.operate(rshift, other)
+        return rshift, self, other
 
     def __radd__(self, other):
         """Implement the ``+`` operator in reverse."""
-        return self.reverse_operate(add, other)
+        return add, other, self
+        # self.reverse_operate(add, [other, self])
 
     def __rsub__(self, other):
         """Implement the ``-`` operator in reverse."""
-        return self.reverse_operate(sub, other)
+        return sub, other, self
 
     def __rmul__(self, other):
         """Implement the ``*`` operator in reverse."""
-        return self.reverse_operate(mul, other)
+        return mul, other, self
 
     def __rdiv__(self, other):
         """Implement the ``/`` operator in reverse."""
-        return self.reverse_operate(div, other)
+        return div, other, self
 
     def __rmod__(self, other):
         """Implement the ``%`` operator in reverse."""
-        return self.reverse_operate(mod, other)
+        return mod, other, self
 
     def __add__(self, other):
         """Implement the ``+`` operator."""
-        return self.operate(add, other)
+        return add, self, other
 
     def __sub__(self, other):
         """Implement the ``-`` operator."""
-        return self.operate(sub, other)
+        return sub, self, other
 
     def __mul__(self, other):
         """Implement the ``*`` operator."""
-        return self.operate(mul, other)
+        return mul, self, other
 
     def __div__(self, other):
         """Implement the ``/`` operator."""
-        return self.operate(div, other)
+        return div, self, other
 
     def __mod__(self, other):
         """Implement the ``%`` operator."""
-        return self.operate(mod, other)
+        return mod, self, other
 
     def __truediv__(self, other):
         """Implement the ``//`` operator."""
-        return self.operate(truediv, other)
+        return truediv, self, other
 
     def __rtruediv__(self, other):
         """Implement the ``//`` operator in reverse."""
-        return self.reverse_operate(truediv, other)
+        return truediv, other, self
 
     def operate(self, op, *other, **kwargs):
         r"""Operate on an argument."""
