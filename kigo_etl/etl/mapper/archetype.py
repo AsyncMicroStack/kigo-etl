@@ -1,5 +1,5 @@
-from kigo.etl.mapper.keys import Key
-import kigo.etl.mapper.typeof as typeof
+from kigo_etl.etl.mapper.keys import Key
+import kigo_etl.etl.mapper.typeof as typeof
 
 
 class SQLArchetype:

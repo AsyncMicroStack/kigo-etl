@@ -1,7 +1,7 @@
 import zlib
 import enum
 from multiprocessing import Pool
-from kigo.etl.mapper.archetype import Archetype
+from kigo_etl.etl.mapper.archetype import Archetype
 
 
 class CompressionLevel(enum.Enum):
@@ -58,7 +58,7 @@ class MemoryDB:
             self.__data[typeof] = {}
             annotations = typeof.__dict__.get("__annotations__", {})
             for key_name, archetype in annotations.items():
-                if archetype.key is not None:
+                if getattr(archetype, 'key', None) and archetype.key is not None:
                     self.__data[typeof][key_name] = {}
                     self.__typeof[typeof]["keys"].append(key_name)
             if not self.__typeof[typeof]["keys"]:

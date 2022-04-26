@@ -1,3 +1,4 @@
+import logging
 from enum import Enum
 
 
@@ -43,7 +44,7 @@ class MappingRegistry:
         if clazz.__qualname__ not in MappingRegistry.__READERS:
             MappingRegistry.__READERS[clazz.__qualname__] = clazz
         else:
-            raise Exception(f"Duplicate reader name <{clazz.__qualname__}>!")
+            logging.info(f"Duplicate reader name <{clazz.__qualname__}>!")
 
     @staticmethod
     def append_extractor(clazz):

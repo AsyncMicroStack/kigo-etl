@@ -1,7 +1,7 @@
 __all__ = []
 
-from kigo.etl.runtime.registry import  MappingRegistry
-from kigo.etl.extractors.operators import ExtractorOperator
+from kigo_etl.etl.runtime.registry import  MappingRegistry
+from kigo_etl.etl.extractors.operators import ExtractorOperator
 
 
 class Extractor(ExtractorOperator):

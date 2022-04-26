@@ -1,9 +1,10 @@
 import os.path
 import logging
 
-from kigo.etl.storage.memdb import MemoryDB
-from kigo.etl.runtime.registry import MappingRegistry
-from kigo.etl.extractors import Extractor
+from kigo_etl.etl.storage.memdb import MemoryDB
+from kigo_etl.etl.runtime.registry import MappingRegistry
+from kigo_etl.etl.extractors import Extractor
+from kigo_persistence.persistence.sql.sqlite.query import SQLiteDB, SQLitePool, SQLiteQuery
 
 
 class MetaReflection:
@@ -53,22 +54,36 @@ def check_readers():
     return non_existing_file
 
 
-def process_mapping():
+def process_mapping(process_data_callback, finalize_callback):
+    """
+    Example declare fun_callback: def fun_callback(num:int, mapp:str, data: T[list, dict])
+    :param process_data_callback:
+    :return:
+    """
     non_existing_file = check_readers()
     logging.debug(f"non-existing files: {non_existing_file}")
-    db = MemoryDB()
+
     for mapp in MappingRegistry.mappings:
+        logging.info(mapp)
         for init_reader in MappingRegistry.mappings[mapp].readers:
             typeof_reader, init = init_reader
             if init["path"] in non_existing_file:
                 continue
-            r = typeof_reader(**init)
-            for line in r:
+            reader = typeof_reader(**init)
+            num = 0
+            for num, line in enumerate(reader):
                 data = ExtractData.extract(MappingRegistry.mappings[mapp].clazz[0], *line)
-                db.store(MappingRegistry.mappings[mapp].clazz[0], data)
-    return db
+                process_data_callback(num, mapp, data, line)
+            if finalize_callback:
+                finalize_callback(num, mapp)
 
 
-def process()->MemoryDB:
-    db = process_mapping()
-    return db
+def process(process_data_callback, finalize_callback = None, config = None):
+    """
+    Example declare fun_callback: def fun_callback(num:int, mapp:str, data: T[list, dict])
+    :param fun_callback:
+    :param config:
+    :return:
+    """
+    process_mapping(process_data_callback, finalize_callback)
+

@@ -1,4 +1,4 @@
-from kigo.etl.runtime.registry import MappingRegistry
+from kigo_etl.etl.runtime.registry import MappingRegistry
 
 
 class MappingInfo:

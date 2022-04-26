@@ -1,7 +1,7 @@
 import json
 import logging
-from kigo.etl.runtime.registry import MappingRegistry
-from kigo.etl.mapper.mapping import MappingInfo
+from kigo_etl.etl.runtime.registry import MappingRegistry
+from kigo_etl.etl.mapper.mapping import MappingInfo
 
 
 class Config:
@@ -18,6 +18,12 @@ class Config:
     @property
     def config(self):
         return Config.__config
+
+    @config.setter
+    def config(self, conf):
+        Config.__config = conf
+        Config.validate()
+        Config.merge()
 
     @property
     def mapping(self):
